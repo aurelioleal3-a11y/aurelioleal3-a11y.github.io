@@ -1,5 +1,5 @@
 // Service worker do Leitor: deixa o app funcionar offline depois da primeira visita.
-const CACHE = 'leitor-v2';
+const CACHE = 'leitor-v4';
 const FILES = ['./', './index.html', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));
