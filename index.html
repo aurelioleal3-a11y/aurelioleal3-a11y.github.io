@@ -2546,8 +2546,9 @@ function fxZoom(z,cx,cy){
   z=Math.max(.25,Math.min(5,z)); if(Math.abs(z-FX.z)<.001) return;
   const box=$('#fx'), cv=$('#fxCv'), r=z/FX.z, rc=box.getBoundingClientRect();
   const px=cx==null?rc.width/2:cx-rc.left, py=cy==null?rc.height/2:cy-rc.top, sx=box.scrollLeft, sy=box.scrollTop;
+  const m0=box.scrollWidth-box.clientWidth, centered=m0<=2||Math.abs(sx-m0/2)<=3;
   cv.style.width=cv.offsetWidth*r+'px'; cv.style.height=cv.offsetHeight*r+'px';
-  box.scrollLeft=(sx+px)*r-px; box.scrollTop=(sy+py)*r-py;
+  box.scrollLeft=(centered&&cx==null)?Math.max(0,(box.scrollWidth-box.clientWidth)/2):(sx+px)*r-px; box.scrollTop=(sy+py)*r-py;
   FX.z=z; $('#fxPct').textContent=Math.round(z*100)+'%';
   clearTimeout(FX.rt); FX.rt=setTimeout(fxRender,160);
 }
