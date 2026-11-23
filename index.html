@@ -2535,7 +2535,7 @@ async function fxRender(){
   if(seq!==fxSeq) return;
   cv.width=tmp.width; cv.height=tmp.height; cv.getContext('2d').drawImage(tmp,0,0);
   cv.style.width=cssW+'px'; cv.style.height=cssH+'px';
-  if(FX.last!==page){FX.last=page; box.scrollTo(0,0)}
+  if(FX.last!==page){FX.last=page; box.scrollTo(Math.max(0,(box.scrollWidth-box.clientWidth)/2),0)}
 }
 let fxPT=null;
 function fxPill(on){$('#fxCtl').classList.remove('off')}
